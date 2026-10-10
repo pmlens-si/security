@@ -3402,6 +3402,119 @@ $('.dx-tabs').addEventListener('keydown', e => {
   selectPlatform(n); document.querySelector(`.dx-tabs [data-p="${n}"]`).focus();
 });
 
+/* ============================== LIVE ALERTS (v15) ==============================
+   While a chat screen is open, ROCky pushes a real-looking notification after a random delay:
+   InstaScan (new CVE found in your environment) and TotalAI (AI agent alert). Styled per app, with a
+   synthesized notification sound (played once the viewer has tapped or typed, as browsers require).
+   Tapping it opens the matching ROCky answer in that chat. */
+(function(){
+  const NOTES = [
+    { id:'insta', ico:'⚡', title:'InstaScan: new CVE in your environment', text:'CVE-2025-53770 (SharePoint RCE) was disclosed 13 min ago and found on 3 of your servers, 1 internet-facing. No scan needed.', q:'instascan' },
+    { id:'ai', ico:'🤖', title:'TotalAI: AI agent alert', text:'invoice-agent called a payments API outside its approved tools. The owner has been alerted.', q:'ai agents at runtime' }
+  ];
+  if(Math.random() < .5) NOTES.reverse();
+  const shown = new Set();
+  const css = `
+  .qn{position:fixed;z-index:10000;display:flex;gap:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left;font-size:13.5px;line-height:1.35;opacity:0;transition:transform .38s cubic-bezier(.2,.9,.25,1.1),opacity .25s}
+  .qn.on{opacity:1}
+  .qn .qn-x{position:absolute;top:6px;right:8px;border:0;background:none;font-size:16px;line-height:1;color:inherit;opacity:.55;cursor:pointer;padding:4px}
+  .qn b{font-weight:700}.qn .qn-t{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .qn .qn-av{flex:none;width:36px;height:36px;border-radius:50%}
+  .qn .qn-app{display:flex;align-items:center;gap:6px;font-size:12px}
+  .qn .qn-app svg{width:16px;height:16px}
+  /* Teams desktop: Windows toast, bottom right */
+  .qn-tdesk{right:18px;bottom:18px;width:364px;flex-direction:column;gap:8px;padding:12px 14px 14px;background:#fff;color:#242424;border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.28),0 0 0 1px rgba(0,0,0,.06);font-family:"Segoe UI",system-ui,sans-serif;transform:translateX(120%)}
+  .qn-tdesk.on{transform:none}
+  .qn-tdesk .qn-app{color:#616161}
+  .qn-tdesk .qn-row{display:flex;gap:10px}
+  .qn-tdesk .qn-btn{align-self:flex-start;margin-left:46px;border:1px solid #D1D1D1;background:#fff;border-radius:4px;padding:5px 14px;font:600 13px "Segoe UI",system-ui,sans-serif;color:#242424}
+  /* Slack desktop: macOS banner, top right */
+  .qn-sdesk{right:16px;top:60px;width:356px;padding:12px 14px;background:rgba(246,246,246,.94);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#1d1d1f;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.22),0 0 0 .5px rgba(0,0,0,.12);font-family:-apple-system,"SF Pro Text",system-ui,sans-serif;transform:translateX(120%)}
+  .qn-sdesk.on{transform:none}
+  .qn-sdesk .qn-ic{flex:none;width:38px;height:38px;border-radius:9px;background:#fff;display:grid;place-items:center;box-shadow:0 0 0 .5px rgba(0,0,0,.1)}
+  .qn-sdesk .qn-ic svg{width:26px;height:26px}
+  .qn-sdesk .qn-time{position:absolute;top:12px;right:30px;font-size:11.5px;color:#86868b}
+  /* WhatsApp: Android heads-up inside the phone; all apps on phones */
+  .qn-phone{left:8px;right:8px;top:calc(env(safe-area-inset-top,0px) + 8px);padding:12px 14px;background:rgba(255,255,255,.97);color:#1f1f1f;border-radius:18px;box-shadow:0 6px 24px rgba(0,0,0,.25);font-family:Roboto,-apple-system,system-ui,sans-serif;transform:translateY(-140%)}
+  .qn-phone.on{transform:none}
+  .qn-phone .qn-body{flex:1;min-width:0}
+  .qn-phone .qn-app{color:#5f6368;margin-bottom:3px}
+  .qn-phone .qn-av{width:40px;height:40px;order:2}
+  .qn-inphone{position:absolute}
+  .qn-phone .qn-x{display:none}
+  `;
+  const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  /* sound: synthesized short chimes, one per app */
+  let ac = null;
+  const unlock = () => { try{ if(!ac) ac = new (window.AudioContext || window.webkitAudioContext)(); if(ac.state === 'suspended') ac.resume(); }catch(e){} };
+  ['pointerdown','keydown','touchstart'].forEach(ev => window.addEventListener(ev, unlock, { passive:true }));
+  function tone(f, t0, dur, vol, type){
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.type = type || 'sine'; o.frequency.setValueAtTime(f, ac.currentTime + t0);
+    g.gain.setValueAtTime(0, ac.currentTime + t0); g.gain.linearRampToValueAtTime(vol, ac.currentTime + t0 + .012);
+    g.gain.exponentialRampToValueAtTime(.0001, ac.currentTime + t0 + dur);
+    o.connect(g); g.connect(ac.destination); o.start(ac.currentTime + t0); o.stop(ac.currentTime + t0 + dur + .05);
+  }
+  function chime(p){
+    if(!ac || ac.state !== 'running') return;
+    try{
+      if(p === 'teams'){ tone(1046.5, 0, .5, .22); tone(784, .16, .7, .2); }
+      else if(p === 'slack'){ tone(1318.5, 0, .12, .2, 'triangle'); tone(987.8, .09, .14, .18, 'triangle'); tone(1568, .2, .35, .16, 'triangle'); }
+      else { tone(1760, 0, .09, .18); tone(2349, .12, .16, .16); }
+    }catch(e){}
+  }
+
+  const onChat = () => { const d = document.getElementById('demo'); return d && !d.hidden && CHATS[current] && CHATS[current].S && CHATS[current].S.authed; };
+  let cur = null;
+  function dismiss(){ if(!cur) return; const n = cur; cur = null; n.classList.remove('on'); setTimeout(() => n.remove(), 400); }
+  function show(N){
+    const p = current, mobile = matchMedia('(max-width:760px)').matches;
+    const n = document.createElement('div'); n.setAttribute('role', 'alert');
+    const logo = { teams:'#teams-logo', slack:'#slack-logo', whatsapp:'#wa-logo' }[p];
+    const appName = { teams:'Microsoft Teams', slack:'Slack', whatsapp:'WhatsApp' }[p];
+    const av = '<svg class="qn-av" viewBox="0 0 100 100" aria-hidden="true"><use href="#rocky"/></svg>';
+    const body = `<b>Qualys ROCky</b><div class="qn-t">${N.ico} <b>${N.title}.</b> ${N.text}</div>`;
+    if(!mobile && p === 'teams'){
+      n.className = 'qn qn-tdesk';
+      n.innerHTML = `<div class="qn-app"><svg aria-hidden="true"><use href="${logo}"/></svg>Microsoft Teams</div><div class="qn-row">${av}<div>${body}</div></div><button type="button" class="qn-btn">View</button>`;
+    } else if(!mobile && p === 'slack'){
+      n.className = 'qn qn-sdesk';
+      n.innerHTML = `<span class="qn-ic"><svg aria-hidden="true"><use href="${logo}"/></svg></span><div style="min-width:0;padding-right:28px">${body}</div><span class="qn-time">now</span>`;
+    } else {
+      n.className = 'qn qn-phone';
+      n.innerHTML = `${av}<div class="qn-body"><div class="qn-app"><svg aria-hidden="true"><use href="${logo}"/></svg>${appName} · now</div>${body}</div>`;
+    }
+    n.insertAdjacentHTML('beforeend', '<button type="button" class="qn-x" aria-label="Dismiss">×</button>');
+    const phone = !mobile && p === 'whatsapp' ? document.querySelector('#pane-whatsapp .phone') : null;
+    if(phone){ n.classList.add('qn-inphone'); phone.appendChild(n); } else document.body.appendChild(n);
+    n.querySelector('.qn-x').addEventListener('click', e => { e.stopPropagation(); dismiss(); });
+    let y0 = null; n.addEventListener('touchstart', e => { y0 = e.touches[0].clientY; }, { passive:true });
+    n.addEventListener('touchmove', e => { if(y0 !== null && e.touches[0].clientY - y0 < -24){ y0 = null; dismiss(); } }, { passive:true });
+    window.QN_LOG = (window.QN_LOG || 0) + 1;
+    n.addEventListener('click', () => {
+      dismiss(); if(current !== p || !onChat()) return;
+      const E = CHATS[p]; E.run(() => E.route(N.q));
+    });
+    cur = n; requestAnimationFrame(() => requestAnimationFrame(() => n.classList.add('on')));
+    chime(p); try{ if(mobile && navigator.vibrate) navigator.vibrate([60, 40, 60]); }catch(e){}
+    setTimeout(() => { if(cur === n) dismiss(); }, 9000);
+  }
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  let wait = rnd(window.QN_FAST ? 2000 : 14000, window.QN_FAST ? 3000 : 26000);
+  function tick(){
+    const next = NOTES.find(N => !shown.has(N.id));
+    if(!next) return;
+    if(onChat() && !cur && document.visibilityState !== 'hidden'){
+      wait -= 1000;
+      if(wait <= 0){ shown.add(next.id); show(next); wait = rnd(window.QN_FAST ? 4000 : 35000, window.QN_FAST ? 5000 : 60000); }
+    }
+    setTimeout(tick, 1000);
+  }
+  setTimeout(tick, 1000);
+  window.QN_SHOW = i => show(NOTES[i || 0]);
+})();
+
 /* ============================== LANDING ============================== */
 const landing = $('#landing'), demo = $('#demo');
 const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
