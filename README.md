@@ -50,7 +50,7 @@ The demo uses a fictional company, Acme Global, with CISO Alex Morgan and collea
 
 ## Files
 
-- `index.html`: the whole demo in one self-contained page (styles, scripts, images and videos inline)
+- `index.html`: the whole demo in one self-contained page (styles, scripts, fonts, images and videos inline). It loads nothing from any other server; see [SECURITY.md](SECURITY.md).
 - `.nojekyll`: tells GitHub Pages to serve the page as is
 
 To update the demo, replace `index.html` and push to `main`. GitHub Pages republishes it automatically.
