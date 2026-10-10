@@ -3405,17 +3405,36 @@ $('.dx-tabs').addEventListener('keydown', e => {
 /* ============================== LANDING ============================== */
 const landing = $('#landing'), demo = $('#demo');
 const reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-let demoUsed = false;
+let demoUsed = false, demoPushed = false, relaunching = false;
 function showDemo(p){
   /* every launch from the landing page starts the chats fresh */
-  if(demoUsed){ try{ location.hash = 'demo-' + (p || 'teams'); location.reload(); return; }catch(e){} }
+  if(relaunching) return;
+  if(demoUsed){ relaunching = true; try{ location.replace(location.pathname + location.search + '#demo-' + (p || 'teams')); location.reload(); return; }catch(e){} }
   demoUsed = true;
+  /* Back (browser or phone) returns to the landing page: keep a landing entry under the demo entry */
+  try{
+    if(/^#demo/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
+    history.pushState(null, '', location.pathname + location.search + '#demo-' + (p || 'teams'));
+    demoPushed = true;
+  }catch(e){}
   landing.hidden = true; demo.hidden = false;
   document.body.classList.remove('lp-on'); document.body.classList.add('in-demo');
   window.scrollTo(0, 0);
   selectPlatform(p || 'teams');
 }
 function showLanding(){
+  if(demoPushed && /^#demo/.test(location.hash)){ try{ history.back(); return; }catch(e){} }
+  toLanding();
+}
+function onNav(){
+  if(relaunching) return;
+  const m = location.hash.match(/^#demo(?:-(teams|slack|whatsapp|claude|chatgpt))?$/);
+  if(m){ if(demo.hidden) showDemo(m[1] || 'teams'); }
+  else if(!demo.hidden){ demoPushed = false; toLanding(); }
+}
+window.addEventListener('popstate', onNav);
+window.addEventListener('hashchange', onNav);
+function toLanding(){
   closeSecure(); demo.hidden = true; landing.hidden = false;
   document.body.classList.remove('in-demo'); document.body.classList.add('lp-on');
   try{ speechSynthesis.cancel(); }catch(e){}
