@@ -1370,7 +1370,7 @@ video.qvid{display:block;width:100%;aspect-ratio:16/9;background:#0A1430;border-
 .vbg>div>span{font-size:13.5px;color:var(--lp-sub);line-height:1.45;padding:0 6px}
 @media (max-width:1100px){ .vbg{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:560px){ .vbg{grid-template-columns:1fr} }
-.cdemo{display:inline-flex;align-items:center;gap:4px;font:500 11.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.2px;color:#8A4B00;background:#FFF4E0;border:1px solid #F2C77A;border-radius:999px;padding:5px 10px;white-space:nowrap;text-transform:none}.cdemo b{font-weight:700}.hero .cdemo{margin-left:10px;vertical-align:middle}.cd-float{display:none;position:fixed;z-index:9999;right:12px;top:calc(env(safe-area-inset-top,0px) + 15px);pointer-events:none;opacity:.92;font-size:10.5px;padding:4px 8px}@media (max-width:760px){.cd-bar{display:none}#demo:not([hidden]) .cd-float{display:inline-flex}#demo:has(#pane-whatsapp:not([hidden])) .cd-float{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 74px)}}</style>
+.cdemo{display:inline-flex;align-items:center;gap:4px;font:500 11.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.2px;color:#8A4B00;background:#FFF4E0;border:1px solid #F2C77A;border-radius:999px;padding:5px 10px;white-space:nowrap;text-transform:none}.cdemo b{font-weight:700}.hero .cdemo{margin-left:10px;vertical-align:middle}</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -1648,13 +1648,13 @@ video.qvid{display:block;width:100%;aspect-ratio:16/9;background:#0A1430;border-
       <div class="ctas3"><button class="btn red" type="button" data-launch="teams"><svg><use href="#teams-logo"/></svg>Open in Teams</button><button class="btn" type="button" data-launch="slack"><svg><use href="#slack-logo"/></svg>Open in Slack</button><button class="btn" type="button" data-launch="whatsapp"><svg><use href="#wa-logo"/></svg>Open in WhatsApp</button><button class="btn" type="button" data-launch="claude"><svg style="fill:#D97757"><use href="#claude-logo"/></svg>Open in Claude</button><button class="btn" type="button" data-launch="chatgpt"><svg style="fill:#0D0D0D"><use href="#openai-logo"/></svg>Open in ChatGPT</button></div>
     </div>
   </section>
-  <footer class="lp-foot"><div class="wrap"><span>Qualys ROCky concept demo · sample data for a fictional company, not live customer data</span><span>Microsoft Teams, Slack, WhatsApp, Claude, ChatGPT, Google Chat and Webex are trademarks of their owners.</span></div></footer>
+  <footer class="lp-foot"><div class="wrap"><span>Qualys ROCky</span><span>Microsoft Teams, Slack, WhatsApp, Claude, ChatGPT, Google Chat and Webex are trademarks of their owners.</span></div></footer>
 </div>
 
-<div id="demo" hidden><span class="cdemo cd-float" aria-hidden="true"><b>Concept</b> · sample data</span>
+<div id="demo" hidden>
   <div class="dx-bar">
     <button class="dx-exit" type="button" aria-label="Back to overview"><svg><use href="#i-back"/></svg></button>
-    <span class="dx-brand"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#rocky"/></svg>Qualys ROCky</span><span class="cdemo cd-bar"><b>Concept demo</b> · sample data</span>
+    <span class="dx-brand"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#rocky"/></svg>Qualys ROCky</span>
     <div class="dx-tabs" role="tablist" aria-label="Chat platform">
       <button type="button" role="tab" data-p="teams" aria-selected="true"><svg aria-hidden="true"><use href="#teams-logo"/></svg><span class="lbl-l">Microsoft Teams</span><span class="lbl-s">Teams</span><span class="n">1</span></button>
       <button type="button" role="tab" data-p="slack" aria-selected="false"><svg aria-hidden="true"><use href="#slack-logo"/></svg><span>Slack</span><span class="n">2</span></button>
@@ -1875,7 +1875,7 @@ video.qvid{display:block;width:100%;aspect-ratio:16/9;background:#0A1430;border-
         </header>
         <div class="cl-scroll" id="clMsgs" aria-live="polite">
           <div class="cl-hello"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#claude-logo"/></svg><h3>Good morning, Alex</h3>
-            <p class="ai-sys"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg><span>Qualys ROCky is connected for your organization. Read-only, signed in with your own Qualys account, and every call is logged in Qualys. <i>Concept demo with sample data.</i></span></p></div>
+            <p class="ai-sys"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg>Qualys ROCky is connected for your organization. Read-only, signed in with your own Qualys account, and every call is logged in Qualys.</p></div>
         </div>
         <div class="cl-bottom">
           <div class="ai-chips" id="clChips"></div>
@@ -1909,7 +1909,7 @@ video.qvid{display:block;width:100%;aspect-ratio:16/9;background:#0A1430;border-
         </header>
         <div class="gp-scroll" id="gpMsgs" aria-live="polite">
           <div class="gp-hello"><h3>What can I help with?</h3>
-            <p class="ai-sys"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg><span>Qualys ROCky app is enabled by your workspace admin. Read-only, signed in with your own Qualys account, and every call is logged in Qualys. <i>Concept demo with sample data.</i></span></p></div>
+            <p class="ai-sys"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg>Qualys ROCky app is enabled by your workspace admin. Read-only, signed in with your own Qualys account, and every call is logged in Qualys.</p></div>
         </div>
         <div class="gp-bottom">
           <div class="ai-chips" id="gpChips"></div>
@@ -2498,11 +2498,11 @@ function makeChat(A){
   const H = {
     async greet(){
       if(A.auth === 'verify'){
-        await say(`👋 Hello, and welcome to <b>Qualys ROCky</b>.<br><i style="opacity:.75;font-size:.92em">Concept demo with sample data for a fictional company.</i><br><br>I bring the Qualys Enterprise TruRisk™ Platform to this chat. I can show your <b>TruRisk™ score</b>, what is driving it, what attackers are exploiting right now, and help you approve, fix and assign the work, right here.`, {}, 900);
+        await say(`👋 Hello, and welcome to <b>Qualys ROCky</b>.<br><br>I bring the Qualys Enterprise TruRisk™ Platform to this chat. I can show your <b>TruRisk™ score</b>, what is driving it, what attackers are exploiting right now, and help you approve, fix and assign the work, right here.`, {}, 900);
         await say('Your admin has linked this number to your Qualys account. Tap <b>Verify</b> to confirm it\'s you. Not sure what I can do? Reply <b>help</b>.', { cta:{ label:'Verify', go:A.openFlow }, footer:'Qualys ROCky' }, 600);
         return;
       }
-      await say(`👋 Good morning, Alex. I'm <b>ROCky</b>, your Qualys cyber risk assistant from ETM, now inside ${A.label}.<br><i style="opacity:.75;font-size:.92em">Concept demo with sample data for a fictional company.</i>`, {}, 900);
+      await say(`👋 Good morning, Alex. I'm <b>ROCky</b>, your Qualys cyber risk assistant from ETM, now inside ${A.label}.`, {}, 900);
       await signedIn();
     },
     async about(){
