@@ -3410,10 +3410,21 @@ $('.dx-tabs').addEventListener('keydown', e => {
 (function(){
   const NOTES = [
     { id:'insta', ico:'⚡', title:'InstaScan: new CVE in your environment', text:'CVE-2025-53770 (SharePoint RCE) was disclosed 13 min ago and found on 3 of your servers, 1 internet-facing. No scan needed.', q:'instascan' },
-    { id:'ai', ico:'🤖', title:'TotalAI: AI agent alert', text:'invoice-agent called a payments API outside its approved tools. The owner has been alerted.', q:'ai agents at runtime' }
+    { id:'tc', ico:'🎯', title:'TruConfirm: exploitability confirmed', text:'17 of your 63 critical internet-facing findings are confirmed exploitable. Fix these first.', q:'truconfirm' },
+    { id:'appr', ico:'✅', title:'Approval needed', text:'The Ivanti VPN firmware change is waiting for your approval. It would cut TruRisk by 62 pts.', q:'what needs my approval' },
+    { id:'wave', ico:'🩹', title:'Patch ready to roll out in waves', text:'Chrome zero-day CVE-2025-6554 (KEV) on 3,180 endpoints. Patch Reliability Score is High.', q:'patch the chrome zero-day in waves' },
+    { id:'kev', ico:'🔴', title:'Exploited in the wild', text:'CitrixBleed 2 (CVE-2025-5777) is under active attack. 4 of your NetScaler ADCs are exposed.', q:'trending threats' },
+    { id:'ai', ico:'🤖', title:'TotalAI: AI agent alert', text:'invoice-agent called a payments API outside its approved tools. The owner has been alerted.', q:'ai agents at runtime' },
+    { id:'shadow', ico:'👀', title:'TotalAI: shadow AI found', text:'37 AI assets are in use without approval. 23 users pasted source code into an unapproved chatbot.', q:'shadow ai' },
+    { id:'pi', ico:'🛡️', title:'TotalAI: prompt injection test failed', text:'7 of 120 attacks got through on the customer support bot, including a system prompt leak.', q:'prompt injection tests' }
   ];
-  if(Math.random() < .5) NOTES.reverse();
-  const shown = new Set();
+  /* cycle through every alert in random order, reshuffle when done, never the same one twice in a row */
+  let queue = [], lastId = null;
+  const shuffle = a => { for(let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  function nextNote(){
+    if(!queue.length){ queue = shuffle(NOTES.slice()); if(queue[0].id === lastId) queue.push(queue.shift()); }
+    const N = queue.shift(); lastId = N.id; return N;
+  }
   const css = `
   .qn{position:fixed;z-index:10000;display:flex;gap:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left;font-size:13.5px;line-height:1.35;opacity:0;transition:transform .38s cubic-bezier(.2,.9,.25,1.1),opacity .25s}
   .qn.on{opacity:1}
@@ -3469,6 +3480,7 @@ $('.dx-tabs').addEventListener('keydown', e => {
   let cur = null;
   function dismiss(){ if(!cur) return; const n = cur; cur = null; n.classList.remove('on'); setTimeout(() => n.remove(), 400); }
   function show(N){
+    dismiss();
     const p = current, mobile = matchMedia('(max-width:760px)').matches;
     const n = document.createElement('div'); n.setAttribute('role', 'alert');
     const logo = { teams:'#teams-logo', slack:'#slack-logo', whatsapp:'#wa-logo' }[p];
@@ -3501,18 +3513,17 @@ $('.dx-tabs').addEventListener('keydown', e => {
     setTimeout(() => { if(cur === n) dismiss(); }, 9000);
   }
   const rnd = (a, b) => a + Math.random() * (b - a);
-  let wait = rnd(window.QN_FAST ? 2000 : 14000, window.QN_FAST ? 3000 : 26000);
+  const F = () => window.QN_FAST ? 0.1 : 1;
+  let wait = rnd(20000, 30000) * F();
   function tick(){
-    const next = NOTES.find(N => !shown.has(N.id));
-    if(!next) return;
     if(onChat() && !cur && document.visibilityState !== 'hidden'){
       wait -= 1000;
-      if(wait <= 0){ shown.add(next.id); show(next); wait = rnd(window.QN_FAST ? 4000 : 35000, window.QN_FAST ? 5000 : 60000); }
+      if(wait <= 0){ show(nextNote()); wait = rnd(45000, 60000) * F(); }
     }
     setTimeout(tick, 1000);
   }
   setTimeout(tick, 1000);
-  window.QN_SHOW = i => show(NOTES[i || 0]);
+  window.QN_SHOW = i => show(i == null ? nextNote() : NOTES[i]);
 })();
 
 /* ============================== LANDING ============================== */
