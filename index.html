@@ -1374,7 +1374,7 @@ video.qvid{display:block;width:100%;aspect-ratio:16/9;background:#0A1430;border-
 .vbg>div>span{font-size:13.5px;color:var(--lp-sub);line-height:1.45;padding:0 6px}
 @media (max-width:1100px){ .vbg{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:560px){ .vbg{grid-template-columns:1fr} }
-.cdemo{display:inline-flex;align-items:center;gap:4px;font:500 11.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.2px;color:#8A4B00;background:#FFF4E0;border:1px solid #F2C77A;border-radius:999px;padding:5px 10px;white-space:nowrap;text-transform:none}.cdemo b{font-weight:700}.hero .cdemo{margin-left:10px;vertical-align:middle}</style>
+.cdemo{display:inline-flex;align-items:center;gap:4px;font:500 11.5px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.2px;color:#8A4B00;background:#FFF4E0;border:1px solid #F2C77A;border-radius:999px;padding:5px 10px;white-space:nowrap;text-transform:none}.cdemo b{font-weight:700}.hero .cdemo{margin-left:10px;vertical-align:middle}.cline{display:flex;align-items:center;gap:8px;margin:0 0 18px;padding:9px 14px;border-radius:10px;background:#EEF4FF;border:1px solid #C9DAFB;color:#123C7A;font-size:14px;line-height:1.35;text-decoration:none;width:fit-content;max-width:100%}.cline svg{flex:none;width:16px;height:16px;fill:currentColor}.cline b{font-weight:700}#trust h2.h1l{font-size:clamp(20px,1.75vw,25px);line-height:1.25;max-width:none}@media (min-width:1100px){#trust h2.h1l{white-space:nowrap}}@media (min-width:1200px){.cline{white-space:nowrap}}</style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -1422,6 +1422,7 @@ video.qvid{display:block;width:100%;aspect-ratio:16/9;background:#0A1430;border-
         <span class="eyebrow"><span class="trio" aria-hidden="true"><svg><use href="#teams-logo"/></svg><svg><use href="#slack-logo"/></svg><svg><use href="#wa-logo"/></svg></span><span style="text-transform:none">Qualys ROCky</span></span><span class="cdemo"><b>Concept demo</b> · sample data</span>
         <h1>ROCky, <em>wherever</em> you work.</h1>
         <p class="lead"><b style="color:var(--lp-ink)">ROCky, the AI assistant in Qualys ETM, now comes to Microsoft Teams, Slack and WhatsApp.</b> No login, no opening ETM, no launching ROCky. Ask by voice or text and get your score, what is driving it and the fix, with one tap to approve. Also in Claude and ChatGPT through the Qualys MCP server. Detailed data never leaves Qualys.</p>
+        <a class="cline" href="#trust"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-lock"/></svg><span><b>Compliance first:</b> GCC High and GovSlack for federal, WhatsApp only where allowed.</span></a>
         <div class="apps5"><span>Open the demo in</span><div>
           <button type="button" data-launch="teams" aria-label="Open in Microsoft Teams"><svg><use href="#teams-logo"/></svg>Teams</button>
           <button type="button" data-launch="slack" aria-label="Open in Slack"><svg><use href="#slack-logo"/></svg>Slack</button>
@@ -1624,12 +1625,12 @@ video.qvid{display:block;width:100%;aspect-ratio:16/9;background:#0A1430;border-
   <section class="sec-lp comp" id="trust">
     <div class="wrap">
       <p class="kicker">Compliance first</p>
-      <h2>Your security posture never leaves your control.</h2>
+      <h2 class="h1l">Compliance by channel: GCC High and GovSlack for federal, WhatsApp only where allowed.</h2>
       <p class="intro">Built for enterprises with the strictest data rules, including US regulated industries and the public sector. The chat carries short summaries. Every detail opens in Qualys, behind your own single sign-on.</p>
       <div class="plats">
-        <div class="plat lead"><span class="rk"><b>01</b> · lead with</span><svg class="pl"><use href="#teams-logo"/></svg><b>Microsoft Teams</b><small>For most enterprises</small><p>Stays in your Microsoft 365 tenant, with Entra ID sign-in. Automates the workflow: assign jobs, create ITSM tickets, approvals, alerts and notifications.</p></div>
-        <div class="plat"><span class="rk"><b>02</b></span><svg class="pl"><use href="#slack-logo"/></svg><b>Slack</b><small>For Slack-first companies</small><p>Your Slack org, SSO, DLP and retention. Automates the workflow: assign jobs, create ITSM tickets, approvals, alerts and notifications.</p></div>
-        <div class="plat"><span class="rk"><b>03</b></span><svg class="pl"><use href="#wa-logo"/></svg><b>WhatsApp</b><small>For leaders on the move</small><p>Summaries only, admin-approved numbers, details behind a secure Qualys link.</p></div>
+        <div class="plat lead"><span class="rk"><b>01</b> · lead with</span><svg class="pl"><use href="#teams-logo"/></svg><b>Microsoft Teams</b><small>For most enterprises · federal on GCC High</small><p>Stays in your Microsoft 365 tenant, with Entra ID sign-in. Federal customers use Teams in GCC High. Automates the workflow: assign jobs, create ITSM tickets, approvals, alerts and notifications.</p></div>
+        <div class="plat"><span class="rk"><b>02</b></span><svg class="pl"><use href="#slack-logo"/></svg><b>Slack</b><small>For Slack-first companies · federal on GovSlack</small><p>Your Slack org, SSO, DLP and retention. Federal customers use GovSlack. Automates the workflow: assign jobs, create ITSM tickets, approvals, alerts and notifications.</p></div>
+        <div class="plat"><span class="rk"><b>03</b></span><svg class="pl"><use href="#wa-logo"/></svg><b>WhatsApp</b><small>Only where it is allowed</small><p>Turned on only where the customer's policy and local rules allow WhatsApp. Not offered to US federal or regulated accounts. Summaries only, admin-approved numbers, details behind a secure Qualys link.</p></div>
       </div>
       <div class="slink">
         <div class="ttl">The secure link: summary in chat, detail in Qualys</div>
