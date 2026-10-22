@@ -12,6 +12,15 @@ This concept takes ROCky further, into the places security leaders already work:
 
 Detailed data never leaves Qualys. The chat shows summaries only. Hostnames, IP addresses and full findings open through a secure Qualys link that uses the person's own SSO, is view-only, expires and is logged.
 
+## The landing page
+
+The overview is written for executives and runs in four screens:
+
+1. **The shift.** Leaders now get quick, relevant answers in chat apps instead of dashboards.
+2. **Why chat.** Blogs, emails and reports wait in an inbox. Chat apps are open all day, so the answer and the action arrive where people already are.
+3. **The 10 pm moment.** A critical flaw goes public at night. The CISO gets the impact and the fix on the lock screen and approves the mitigation in one tap (illustrative timeline).
+4. **Try it.** Open the demo in any of the five apps. Compliance by channel: GCC High and GovSlack for federal, WhatsApp only where allowed.
+
 ## What the demo shows
 
 The core flow follows three Qualys capabilities:
@@ -21,6 +30,7 @@ The core flow follows three Qualys capabilities:
 3. **Auto-remediate.** Wave patching, guided by a Patch Reliability Score, with approval in the chat.
 
 It also covers:
+- **PHP2Shell** (CVE-2026-109618 and CVE-2026-109619), two critical PHP remote code execution flaws disclosed and patched on 21 Oct 2026: exposure across web servers, the session upload progress mitigation, approval in chat and assignment to the web team. Public facts are from the PHP, Qualys, Wiz and Tenable advisories; the exposure numbers are sample data.
 - TruRisk score, trend and risk appetite, and the business entities above appetite
 - Top risks and threats exploited in the wild
 - Compliance posture by framework

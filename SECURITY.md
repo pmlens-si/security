@@ -1,6 +1,6 @@
 # Security and privacy check
 
-Checked on 10 Oct 2026 against `index.html` in this repository.
+Checked on 10 Oct 2026, and re-checked on 22 Oct 2026, against `index.html` in this repository.
 
 ## Summary
 
