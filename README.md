@@ -16,8 +16,8 @@ Detailed data never leaves Qualys. The chat shows summaries only. Hostnames, IP 
 
 The overview is written for executives and runs in four screens:
 
-1. **The shift.** Leaders now get quick, relevant answers in chat apps instead of dashboards.
-2. **Why chat.** Blogs, emails and reports wait in an inbox. Chat apps are open all day, so the answer and the action arrive where people already are.
+1. **The shift.** User behaviour has shifted: people are more at home asking in chat than opening a dashboard.
+2. **Why chat.** Email and blogs keep the full story. Chat adds instant access to the same insight, with the action attached, in the apps leaders open many times a day.
 3. **The 10 pm moment.** A critical flaw goes public at night. The CISO gets the impact and the fix on the lock screen and approves the mitigation in one tap (illustrative timeline).
 4. **Try it.** Open the demo in any of the five apps. Compliance by channel: GCC High and GovSlack for federal, WhatsApp only where allowed.
 

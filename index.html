@@ -1459,13 +1459,13 @@ body.in-demo .ex-dots{display:none}
 .ex-vs{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1000px;margin:0 auto}
 .ex-s2 .ex-lead{margin-bottom:26px;max-width:760px}
 .ex-col{min-width:0;border-radius:20px;padding:26px 26px 22px;border:1px solid var(--ex-line)}
-.ex-col.old{background:#F6F7F9}
+.ex-col.old{background:#F4F7FB}
 .ex-col.new{background:linear-gradient(160deg,#fff,#FFF6F5);border-color:#F6C9C6;box-shadow:0 30px 60px -36px rgba(237,46,38,.45)}
 .ex-ct{margin:0 0 14px;font:600 13px/1 var(--display);letter-spacing:1px;text-transform:uppercase;color:#7A8595}
 .ex-col.new .ex-ct{color:var(--ex-red)}
-.ex-inbox{background:#fff;border:1px solid var(--ex-line);border-radius:12px;overflow:hidden;font-size:13px;opacity:.85}
+.ex-inbox{background:#fff;border:1px solid var(--ex-line);border-radius:12px;overflow:hidden;font-size:13px}
 .ex-inbox .ih{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--ex-line)}
-.ex-inbox .ih span{color:#C62828;font-weight:600;font-size:12px}
+.ex-inbox .ih span{color:#7A8595;font-weight:500;font-size:12px}
 .ex-inbox .ir{display:flex;gap:10px;padding:9px 14px;border-bottom:1px solid #F0F2F5}
 .ex-inbox .ir:last-child{border:0}
 .ex-inbox .ir i{flex:none;width:24px;height:24px;border-radius:50%;background:#E6EAF0}
@@ -1473,7 +1473,7 @@ body.in-demo .ex-dots{display:none}
 .ex-inbox .ir b,.ex-inbox .ir span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ex-inbox .ir b{font-weight:500;color:#4A5463}
 .ex-inbox .ir span{color:#97A1AE;font-size:12px}
-.ex-inbox .ir.u b{font-weight:700;color:#2B3442}
+.ex-inbox .ir.u b{font-weight:700;color:#2B3442}.ex-inbox .ir b{color:#2B3442}
 .ex-msg{background:#fff;border:1px solid #EADBDA;border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.5;color:#1D1C1D}
 .ex-msg .mh{display:flex;align-items:center;gap:7px;margin-bottom:6px}
 .ex-msg .mh svg{width:18px;height:18px}
@@ -1483,8 +1483,8 @@ body.in-demo .ex-dots{display:none}
 .ex-msg .bt i.p{background:#007A5A;border-color:#007A5A}
 .ex-xl,.ex-ok{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:9px;font-size:15px}
 .ex-xl li,.ex-ok li{display:flex;gap:10px;align-items:baseline}
-.ex-xl li{color:#6B7686}
-.ex-xl li::before{content:"✕";color:#A0A9B5;font-weight:700}
+.ex-xl li{color:var(--ex-sub);font-weight:500}
+.ex-xl li::before{content:"✓";color:#1E64C8;font-weight:800}
 .ex-ok li{color:var(--ex-ink);font-weight:500}
 .ex-ok li::before{content:"✓";color:#2E7D32;font-weight:800}
 .ex-band{text-align:center;margin:26px auto 0;font:600 clamp(18px,1.6vw,22px)/1.35 var(--display);color:var(--ex-ink)}
@@ -1671,31 +1671,31 @@ body.in-demo .ex-dots{display:none}
   <section class="ex-s ex-s2" id="why">
     <div class="ex-w">
       <p class="ex-eb"><span class="ex-n">02</span>Why chat</p>
-      <h2>Why send a blog post or an email, when the answer can be <em>at their fingertips?</em></h2>
-      <p class="ex-lead ex-c">Advisories, blogs and email alerts wait in a crowded inbox. Teams, Slack and WhatsApp are open all day and checked dozens of times a day. ROCky puts the one answer that matters there, about your environment, with the action attached.</p>
+      <h2>Keep the email and the blog. <em>Add the answer to the apps they open all day.</em></h2>
+      <p class="ex-lead ex-c">Blogs, advisories and email reports carry the full story, and they stay. Chat adds instant access: the same insight, about your environment, in the apps leaders open many times a day, with the action attached.</p>
       <div class="ex-vs">
         <div class="ex-col old">
-          <p class="ex-ct">Email, blog, weekly report</p>
+          <p class="ex-ct">Email, blog, report · the full story</p>
           <div class="ex-inbox">
-            <div class="ih"><b>Inbox</b><span>1,284 unread</span></div>
-            <div class="ir"><i></i><div><b>Newsletter: this week in patching</b><span>Top stories from around the industry…</span></div></div>
+            <div class="ih"><b>Inbox</b><span>Security</span></div>
+            <div class="ir"><i></i><div><b>Qualys blog: PHP2Shell explained</b><span>What the two PHP flaws mean and how to respond</span></div></div>
             <div class="ir u"><i></i><div><b>Security advisory: PHP critical update</b><span>A vendor has released fixes for two vulnerabilities…</span></div></div>
-            <div class="ir"><i></i><div><b>Weekly vulnerability report.pdf</b><span>42 pages · 186,420 detections</span></div></div>
-            <div class="ir"><i></i><div><b>Re: Q3 planning offsite</b><span>Agenda attached</span></div></div>
+            <div class="ir"><i></i><div><b>Weekly risk report.pdf</b><span>TruRisk trend, top risks and SLAs</span></div></div>
+            <div class="ir"><i></i><div><b>Board pack: Q3 security update</b><span>Shared with the leadership team</span></div></div>
           </div>
-          <ul class="ex-xl"><li>Generic, not about your assets</li><li>Read hours later, if at all</li><li>Still needs a dashboard to act</li></ul>
+          <ul class="ex-xl"><li>Depth and context for the record</li><li>Easy to share with the wider team</li><li>Read when there is time</li></ul>
         </div>
         <div class="ex-col new">
-          <p class="ex-ct">ROCky in chat</p>
+          <p class="ex-ct">ROCky in chat · the instant answer</p>
           <div class="ex-msg">
             <div class="mh"><svg aria-hidden="true"><use href="#slack-logo"/></svg><b>Qualys ROCky</b><span class="app">APP</span><small>now</small></div>
             <p><b>⚡ PHP2Shell is in your environment.</b> 38 web servers run an affected PHP version, 12 of them internet-facing. A mitigation is ready.</p>
             <div class="bt"><i class="p">Approve mitigation</i><i>Assign to Web team</i></div>
           </div>
-          <ul class="ex-ok"><li>About your environment, not the industry</li><li>Seen in minutes, where people already are</li><li>Acted on in one tap, and logged</li></ul>
+          <ul class="ex-ok"><li>About your own environment</li><li>Seen in minutes, where people already are</li><li>Acted on in one tap, and logged</li></ul>
         </div>
       </div>
-      <p class="ex-band">From advisory to decision, without leaving the conversation.</p>
+      <p class="ex-band">Email and blogs for the full story. Chat for the instant answer and the decision.</p>
     </div>
     <a class="ex-next" href="#night">The 10 pm moment<span>↓</span></a>
   </section>
