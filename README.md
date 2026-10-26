@@ -14,12 +14,13 @@ Detailed data never leaves Qualys. The chat shows summaries only. Hostnames, IP 
 
 ## The landing page
 
-The overview is written for executives and runs in four screens:
+The overview is written for executives and runs in five screens:
 
-1. **The shift.** User behaviour has shifted: people are more at home asking in chat than opening a dashboard.
-2. **Why chat.** Email and blogs keep the full story. Chat adds instant access to the same insight, with the action attached, in the apps leaders open many times a day.
-3. **The 10 pm moment.** A critical flaw goes public at night. The CISO gets the impact and the fix on the lock screen and approves the mitigation in one tap (illustrative timeline).
-4. **Try it.** Open the demo in any of the five apps. Compliance by channel: GCC High and GovSlack for federal, WhatsApp only where allowed.
+1. **Critical alerts.** When Qualys has a critical message (a critical vulnerability or an urgent security announcement), customers get the notification and the details instantly on their phone, in Teams, Slack, or WhatsApp where allowed. They acknowledge it in one tap, and it goes to a deputy if no one responds.
+2. **The shift.** User behaviour has shifted: people are more at home asking in chat than opening a dashboard.
+3. **Why chat.** Email and blogs keep the full story. Chat adds instant access to the same insight, with the action attached, in the apps leaders open many times a day.
+4. **The 10 pm moment.** A critical flaw goes public at night. The CISO gets the impact and the fix on the lock screen and approves the mitigation in one tap (illustrative timeline).
+5. **Try it.** Open the demo in any of the five apps. Compliance by channel: GCC High and GovSlack for federal, WhatsApp only where allowed.
 
 ## What the demo shows
 
@@ -30,6 +31,7 @@ The core flow follows three Qualys capabilities:
 3. **Auto-remediate.** Wave patching, guided by a Patch Reliability Score, with approval in the chat.
 
 It also covers:
+- **Qualys advisories.** A critical notice from Qualys arrives in the chat with Acknowledge, "Am I affected?" and Share buttons, and shows who on the response list has acknowledged it.
 - **PHP2Shell** (CVE-2026-109618 and CVE-2026-109619), two critical PHP remote code execution flaws disclosed and patched on 21 Oct 2026: exposure across web servers, the session upload progress mitigation, approval in chat and assignment to the web team. Public facts are from the PHP, Qualys, Wiz and Tenable advisories; the exposure numbers are sample data.
 - TruRisk score, trend and risk appetite, and the business entities above appetite
 - Top risks and threats exploited in the wild
